@@ -9,13 +9,13 @@ export default function App() {
 }
 
 function Counter() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [count, setCount] = useState(0);
 
-  const stepPlus = () => setStep((s) => s + 1);
-  const stepMinus = () => {
-    if (step > 1) setStep((s) => s - 1);
-  };
+  // const stepPlus = () => setStep((s) => s + 1);
+  // const stepMinus = () => {
+  //   if (step > 1) setStep((s) => s - 1);
+  // };
   const countPlus = () => setCount((c) => c + step);
   const countMinus = () => setCount((c) => c - step);
   // const days = count;
@@ -30,17 +30,30 @@ function Counter() {
   const date = new Date();
   date.setDate(date.getDate() + count);
 
+  function handleChange(c) {
+    setStep(c.target.value);
+  }
+
+  function handleCountChange(e) {
+    setCount(e.target.value);
+  }
   return (
     <>
       <div>
-        <input type="range" min="0" max="10" />
-        <button onClick={stepMinus}>-</button>
+        <input type="range" min="0" max="10" onChange={handleChange} />
+        {step}
+
+        {/* <button onClick={stepMinus}>-</button>
         <span>Step: {step}</span>
-        <button onClick={stepPlus}>+</button>
+        <button onClick={stepPlus}>+</button> */}
       </div>
       <div>
         <button onClick={countMinus}>-</button>
-        <span>Count: {count}</span>
+        <input
+          type={Number(0)}
+          placeholder={count}
+          onChange={handleCountChange}
+        />
         <button onClick={countPlus}>+</button>
       </div>
       <br />

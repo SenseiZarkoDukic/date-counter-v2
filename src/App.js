@@ -33,6 +33,7 @@ function Counter() {
   return (
     <>
       <div>
+        <input type="range" min="0" max="10" />
         <button onClick={stepMinus}>-</button>
         <span>Step: {step}</span>
         <button onClick={stepPlus}>+</button>

@@ -1,4 +1,3 @@
-import { clear } from "@testing-library/user-event/dist/clear";
 import { useState } from "react";
 
 export default function App() {
@@ -10,7 +9,7 @@ export default function App() {
 }
 
 function Counter() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [count, setCount] = useState(0);
 
   // const stepPlus = () => setStep((s) => s + 1);
@@ -36,13 +35,9 @@ function Counter() {
   }
 
   function handleCountChange(e) {
-    e.preventDefault();
     setCount(Number(e.target.value));
   }
 
-  function onClear() {
-    setCount(0);
-  }
   return (
     <>
       <div>
@@ -62,10 +57,10 @@ function Counter() {
       <div>
         <button onClick={countMinus}>-</button>
         <input
-          type="number"
+          type="text"
           value={count}
           onChange={handleCountChange}
-          onClick={onClear}
+          // onClick={onClear}
         />
         <button onClick={countPlus}>+</button>
       </div>

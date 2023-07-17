@@ -1,3 +1,4 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import { useState } from "react";
 
 export default function App() {
@@ -31,16 +32,27 @@ function Counter() {
   date.setDate(date.getDate() + count);
 
   function handleChange(c) {
-    setStep(c.target.value);
+    setStep(Number(c.target.value));
   }
 
   function handleCountChange(e) {
-    setCount(e.target.value);
+    e.preventDefault();
+    setCount(Number(e.target.value));
+  }
+
+  function onClear() {
+    setCount(0);
   }
   return (
     <>
       <div>
-        <input type="range" min="0" max="10" onChange={handleChange} />
+        <input
+          type="range"
+          min={0}
+          max={10}
+          value={step}
+          onChange={handleChange}
+        />
         {step}
 
         {/* <button onClick={stepMinus}>-</button>
@@ -50,9 +62,10 @@ function Counter() {
       <div>
         <button onClick={countMinus}>-</button>
         <input
-          type={Number(0)}
-          placeholder={count}
+          type="number"
+          value={count}
           onChange={handleCountChange}
+          onClick={onClear}
         />
         <button onClick={countPlus}>+</button>
       </div>

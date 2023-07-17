@@ -37,7 +37,7 @@ function Counter() {
   function handleCountChange(e) {
     setCount(Number(e.target.value));
   }
-  function handleReset(e) {
+  function handleReset() {
     setStep(1);
     setCount(0);
   }
@@ -75,7 +75,9 @@ function Counter() {
       </p>
 
       {(step !== 1 || count !== 0) && (
-        <button onClick={handleReset}>Reset</button>
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
       )}
     </>
   );

@@ -37,7 +37,10 @@ function Counter() {
   function handleCountChange(e) {
     setCount(Number(e.target.value));
   }
-
+  function handleReset(e) {
+    setStep(1);
+    setCount(0);
+  }
   return (
     <>
       <div>
@@ -70,6 +73,10 @@ function Counter() {
         {count === 0 && `Today is ${date.toDateString()}`}
         {count < 0 && `${Math.abs(count)} days ago was ${date.toDateString()}`}
       </p>
+
+      {(step !== 1 || count !== 0) && (
+        <button onClick={handleReset}>Reset</button>
+      )}
     </>
   );
 }
